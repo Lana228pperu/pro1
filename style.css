@@ -1,0 +1,504 @@
+/* ============ ЗАГАЛЬНІ НАЛАШТУВАННЯ ============ */
+
+/* Прибираємо стандартні відступи браузера */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Плавна прокрутка до розділів при кліку на меню */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Основний шрифт і колір тексту для всього сайту */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #1c1c1c;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* Посилання без підкреслення */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Бічні відступи: контент не ширший за 1150px і по центру */
+header,
+section,
+footer {
+  padding-left: max(5%, calc((100% - 1150px) / 2));
+  padding-right: max(5%, calc((100% - 1150px) / 2));
+}
+
+
+/* ============ ШАПКА ============ */
+
+header {
+  position: sticky;          /* шапка залишається вгорі при прокрутці */
+  top: 0;
+  z-index: 100;
+  display: flex;             /* логотип зліва, меню справа */
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #eeeeee;
+}
+
+/* Логотип */
+header > a {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+header > a span {
+  color: #e63946;
+}
+
+/* Меню */
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+header nav a {
+  position: relative;
+  padding-bottom: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+/* Лінія під пунктом меню, яка з'являється при наведенні */
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #e63946;
+  transition: width 0.3s;
+}
+
+header nav a:hover {
+  color: #e63946;
+}
+
+header nav a:hover::after {
+  width: 100%;
+}
+
+
+/* ============ ЗАГАЛЬНИЙ СТИЛЬ РОЗДІЛІВ ============ */
+
+section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+/* Заголовки розділів */
+section h2 {
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Підзаголовок — це абзац одразу після заголовка h2 */
+section > h2 + p {
+  text-align: center;
+  color: #777777;
+  margin-bottom: 50px;
+}
+
+
+/* ============ ГОЛОВНИЙ ЕКРАН ============ */
+
+#home {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #111111 0%, #2b2b2b 55%, #e63946 160%);
+  color: #ffffff;
+}
+
+/* Маленький напис над заголовком */
+#home p:first-child {
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+#home h1 {
+  font-size: 64px;
+  line-height: 1.1;
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+#home h1 + p {
+  font-size: 19px;
+  max-width: 520px;
+  margin-bottom: 36px;
+  color: #dddddd;
+}
+
+/* Кнопка на головному екрані */
+#home a {
+  display: inline-block;
+  padding: 15px 36px;
+  background: #e63946;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 40px;
+  border: 2px solid #e63946;
+  transition: all 0.3s;
+}
+
+#home a:hover {
+  background: #ffffff;
+  color: #e63946;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(230, 57, 70, 0.35);
+}
+
+
+/* ============ КОЛЕКЦІЯ (картки товарів) ============ */
+
+/* Сітка: 4 картки в один ряд */
+#collection > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+article {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Картка підіймається при наведенні */
+article:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.16);
+}
+
+/* Кольорові блоки замість фотографій */
+article figure {
+  height: 240px;
+  transition: transform 0.4s;
+}
+
+article:hover figure {
+  transform: scale(1.06);
+}
+
+#collection article:nth-child(1) figure { background: linear-gradient(135deg, #434343, #000000); }
+#collection article:nth-child(2) figure { background: linear-gradient(135deg, #4b79a1, #283e51); }
+#collection article:nth-child(3) figure { background: linear-gradient(135deg, #f2f2f2, #bdbdbd); }
+#collection article:nth-child(4) figure { background: linear-gradient(135deg, #e63946, #7a1a22); }
+
+/* Текст усередині картки */
+article div {
+  padding: 20px;
+  background: #ffffff;
+  position: relative;
+}
+
+article h3 {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+article p {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 14px;
+}
+
+/* Ціна */
+article strong {
+  font-size: 18px;
+  color: #e63946;
+}
+
+
+/* ============ ПЕРЕВАГИ ============ */
+
+#benefits {
+  background: #f5f5f7;
+}
+
+#benefits > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+#benefits > div > div {
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #eeeeee;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+#benefits > div > div:hover {
+  transform: translateY(-6px);
+  border-color: #e63946;
+}
+
+/* Емодзі-іконка */
+#benefits span {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 14px;
+}
+
+#benefits h3 {
+  margin-bottom: 8px;
+}
+
+#benefits p {
+  font-size: 14px;
+  color: #666666;
+}
+
+
+/* ============ ПРО НАС ============ */
+
+/* Текст зліва, цифри справа */
+#about {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+#about > div {
+  flex: 1;
+}
+
+#about h2 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#about > div p {
+  color: #555555;
+  margin-bottom: 16px;
+}
+
+/* Кнопка "Зв'язатися з нами" */
+#about a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 15px 36px;
+  border: 2px solid #1c1c1c;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+#about a:hover {
+  background: #1c1c1c;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Блок з цифрами */
+aside {
+  flex: 1;
+  display: grid;
+  gap: 18px;
+}
+
+aside p {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 28px;
+  background: #f5f5f7;
+  border-radius: 14px;
+  border-left: 5px solid #e63946;
+  transition: transform 0.3s;
+}
+
+aside p:hover {
+  transform: translateX(8px);
+}
+
+aside strong {
+  font-size: 34px;
+  min-width: 110px;
+}
+
+aside span {
+  color: #666666;
+}
+
+
+/* ============ КОНТАКТИ ============ */
+
+#contacts {
+  background: #111111;
+  color: #ffffff;
+}
+
+#contacts > h2 + p {
+  color: #aaaaaa;
+}
+
+#contacts > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+#contacts > div > div {
+  padding: 28px 22px;
+  background: #1c1c1c;
+  border-radius: 14px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+#contacts > div > div:hover {
+  background: #e63946;
+  transform: translateY(-5px);
+}
+
+#contacts h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+#contacts p {
+  color: #dddddd;
+  font-size: 15px;
+}
+
+
+/* ============ НИЖНЯ ЧАСТИНА (footer) ============ */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  background: #000000;
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+footer nav {
+  gap: 20px;
+}
+
+footer nav a:hover {
+  color: #e63946;
+}
+
+
+/* ============ АДАПТИВНІСТЬ ============ */
+
+/* ПЛАНШЕТИ (екран до 992px): по 2 картки в ряд */
+@media (max-width: 992px) {
+
+  #collection > div,
+  #benefits > div,
+  #contacts > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #home h1 {
+    font-size: 48px;
+  }
+
+  /* Текст і цифри «Про нас» один під одним */
+  #about {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  #about > div,
+  aside {
+    width: 100%;
+  }
+}
+
+/* СМАРТФОНИ (екран до 768px): по 1 картці в ряд */
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+  }
+
+  section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  section h2 {
+    font-size: 30px;
+  }
+
+  #home {
+    min-height: 75vh;
+    align-items: center;
+    text-align: center;
+  }
+
+  #home h1 {
+    font-size: 36px;
+  }
+
+  #home h1 + p {
+    font-size: 16px;
+  }
+
+  #collection > div,
+  #benefits > div,
+  #contacts > div {
+    grid-template-columns: 1fr;
+  }
+
+  #about h2,
+  #about > div {
+    text-align: center;
+  }
+
+  aside strong {
+    font-size: 28px;
+    min-width: 90px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}
